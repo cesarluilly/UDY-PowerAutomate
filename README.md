@@ -2,9 +2,33 @@
 
 ## Conectores 
 
+#### Actions
+
 - Input
 - Delay 
 - Delay Unitil (Parate hasta que se cumpla alguna condicion)
+- Initialize Variable
+- Increment Variable
+- Decrement Variable
+- Set Variable
+- Append to string variable (Despues de este se pone el Compose para que se muestre la concatenacion de string)
+- Compose
+- Append to array variable (Agregarle mas elementos a una variable de array)
+- Condition
+
+#### Expresions
+
+- equals   Seleccione Expresions, tecleo equals y despues selecciono Contenido Dinamico y poco a poco me arma lo siguiente : equals(variables('x'), variables('y'))
+- 
+- 
+
+#### Functions
+
+- Concat
+- utcNow()
+- addDays()
+- addHours()
+
 
 ## Video 4
 ![1752516073584](image/README/1752516073584.png)
@@ -315,3 +339,64 @@ Click Derecho sobre el Action
 Pegamos dando Click Derecho en el Boton de + y escojemos Paste an Action
 * ![1753319681579](image/README/1753319681579.png)
 
+## Video 36 38 Crear flujos con IA
+
+![1753413690490](image/README/1753413690490.png)
+
+# Seccion 6 Expresiones, variables y funciones logicas
+
+## Video 39, 40 Empezando con las variables
+
+![1753419279891](image/README/1753419279891.png)
+
+## Video 41 Anexar cadenas de texto
+
+![1753419204624](image/README/1753419204624.png)
+
+## Video 42 Anexar Matriz
+
+![1753419967668](image/README/1753419967668.png)
+![1753419994527](image/README/1753419994527.png)
+
+Run 
+![1753420036646](image/README/1753420036646.png)
+![1753420051043](image/README/1753420051043.png)
+![1753420075589](image/README/1753420075589.png)
+![1753420087628](image/README/1753420087628.png)
+
+## Video 43, 44 Condiciones - Parte1 y Parte2
+
+![1753420779203](image/README/1753420779203.png)
+
+## Video 45 Comparaciones en expresiones Parte 1
+
+El resultado de lado izquierdo es false, y false es igual a false, ese resultado es true
+![1753421519642](image/README/1753421519642.png)
+![1753421460451](image/README/1753421460451.png)
+![1753424171447](image/README/1753424171447.png)![1753421668341](image/README/1753421668341.png)
+
+## Video 46 Comparaciones en expresiones Parte 2
+
+![1753424188564](image/README/1753424188564.png)
+
+## Video 47 Unir distintos textos
+
+![1753425121920](image/README/1753425121920.png) 
+![1753425219238](image/README/1753425219238.png)
+
+## Video 48 Expresiones de tiempo - Parte 1
+
+![1753426776020](image/README/1753426776020.png)
+![1753426817640](image/README/1753426817640.png)
+
+## Video 48 Expresiones de tiempo - Parte 2
+
+![1753427208112](image/README/1753427208112.png)
+
+Run
+![1753427175383](image/README/1753427175383.png)
+![1753427187599](image/README/1753427187599.png)
+
+## Video 50 Palabras clave en cadens de texto
+
+![1753427800224](image/README/1753427800224.png)
