@@ -21,6 +21,9 @@
 - Create HTML Table de Data Operation
 - Send a Email (V2) de Office 365 Outlook
 - Parse Json de Data Operation
+- Do Until de Control
+- Increment Variable
+- On new email (Cuando llega un nuevo correo a nuestra bandeja)
 
 #### Expresions
 
@@ -42,6 +45,9 @@
 - substring() Cortar ciertas cadenas
 - indexOf() 
 
+#### Bibliotecas de Microsoft
+
+- OneDrive
 
 ## Video 4
 ![1752516073584](image/README/1752516073584.png)
@@ -552,3 +558,58 @@ Sacar informacion de una propiedad de un Json que ya esta escructurado
     - ![1753559961061](image/README/1753559961061.png)
 - Si corremos la aplicacion 
     - ![1753560013977](image/README/1753560013977.png)
+
+
+## Video 60 Repetir hasta
+
+- Agregamos una variable inicializada en Zero
+- Agregamos la accion `Do Until` de Control y agregamos la condicion para que se detenga
+    - ![1753560485665](image/README/1753560485665.png)
+- Agregamos dentro una incrementacion de variable
+    - ![1753560568735](image/README/1753560568735.png)
+- Agregamos una nueva variable
+    - ![1753560933679](image/README/1753560933679.png)
+- Corremos la aplicacion y en el ciclo podemos ver el valor de cada una de las variables de cada iteracion
+    - ![1753561123414](image/README/1753561123414.png)
+
+# Seccion 7: Automatizaciones en bibliotecas de documentos y listas de elementos
+
+## Video 61 Introduccion a las bibliotecas de documentos de Microsoft
+
+- Por conocer.- Si nos vamos a OneDrive podemos crear flujos
+    - ![1753561497066](image/README/1753561497066.png)
+- Y nos salen diferentes tipos de flujos que podemos realizar en base a la informacion que tenemos en nuestra carpeta
+    - ![1753561538582](image/README/1753561538582.png)
+- Con SharePoint podemos crear sitios o noticias
+    - ![1753561712927](image/README/1753561712927.png)
+
+## Video 62 Guardar adjuntos de un correo electronico en OneDrive - Parte 1
+
+- Buscamos una plantilla que nos permita guardar archivos adjuntos de un correo en OneDrive 
+    - **NOTA.-** Como estamos en un correo de dominio empresarial, debemos escoger una plantillas que haga referencia a un correo de dominio empresarial @cuprum.com y no a un dominio @outlook.com
+        - ![1753562399615](image/README/1753562399615.png)
+        - Le Damos en continuar
+        - ![1753562552872](image/README/1753562552872.png)
+- Sale esto 
+    - Donde nosotros podemos poner la condicion, en este caso esta la condicion 
+        - `De` para evaluar si viende de alguna persona en particular, pero tambien podemos 
+        - `Body`como si en el cuerpo viente cierto campo, evaluar el nivel de importancia del correo, etc
+        - `Asunto` que en el asunto detectemos cierta palabra clave
+        - 
+    - ![1753562861979](image/README/1753562861979.png)
+- Dentro de la condicion
+    - En esta parte solo esta la logica para recibir un adjunto, pero si nos llegan 25 adjuntos por ejemplo, tendriamos que hacer el mismo proceso 25 veses, pero ahorita solo esta para una ves
+    - ![1753564547572](image/README/1753564547572.png)
+    - Cambie el directorio a guardar ![1753564737032](image/README/1753564737032.png)
+        - Es muy importante que mappeemos correctamente los attachments en su correspondiente campo para que funcione
+            - ![1753564598443](image/README/1753564598443.png)
+            - ![1753564610387](image/README/1753564610387.png)
+            - ![1753564622035](image/README/1753564622035.png)
+    - En caso de que sea `FALSE` guardamos los adjuntos en otra carpeta
+        - ![1753564844219](image/README/1753564844219.png)
+- Corremos el flujo
+- Eviamos un correo
+    - ![1753565966783](image/README/1753565966783.png)
+- Verificamos en nuestra carpeta de OneDrive
+    - ![1753566001404](image/README/1753566001404.png)
+
