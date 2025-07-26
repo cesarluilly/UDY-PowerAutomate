@@ -20,7 +20,7 @@
 - List rows present in a table
 - Create HTML Table de Data Operation
 - Send a Email (V2) de Office 365 Outlook
-- 
+- Parse Json de Data Operation
 
 #### Expresions
 
@@ -535,3 +535,20 @@ Corremos
 ![1753515476393](image/README/1753515476393.png)
 ![1753515435110](image/README/1753515435110.png)
 
+## Video 59 Parse JSON
+
+Sacar informacion de una propiedad de un Json que ya esta escructurado
+
+- Inicializamos la variable
+    - ![1753559570205](image/README/1753559570205.png)
+- Agregamos la accion `Parse to Json` y agregamos la variable y le damos click en Generate From Sample
+    - ![1753559630869](image/README/1753559630869.png) 
+- Pegamos la misma escructura ya que no va a cambiar la escructura
+    - ![1753559685116](image/README/1753559685116.png)
+- Despues de haberle Dado en Done nos va a generar esta escructura
+    - ![1753559727282](image/README/1753559727282.png)
+- Agregamos una nueva variable y en el valor, ahora vemos las propiedades de nuestro JSON, para posteriormente elegir Ciudad
+    - ![1753559908608](image/README/1753559908608.png)
+    - ![1753559961061](image/README/1753559961061.png)
+- Si corremos la aplicacion 
+    - ![1753560013977](image/README/1753560013977.png)
