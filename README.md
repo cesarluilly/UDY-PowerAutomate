@@ -595,8 +595,9 @@ Sacar informacion de una propiedad de un Json que ya esta escructurado
         - `De` para evaluar si viende de alguna persona en particular, pero tambien podemos 
         - `Body`como si en el cuerpo viente cierto campo, evaluar el nivel de importancia del correo, etc
         - `Asunto` que en el asunto detectemos cierta palabra clave
-        - 
     - ![1753562861979](image/README/1753562861979.png)
+    - En este caso escojemos asunto
+        - ![1753566125268](image/README/1753566125268.png)
 - Dentro de la condicion
     - En esta parte solo esta la logica para recibir un adjunto, pero si nos llegan 25 adjuntos por ejemplo, tendriamos que hacer el mismo proceso 25 veses, pero ahorita solo esta para una ves
     - ![1753564547572](image/README/1753564547572.png)
