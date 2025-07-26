@@ -165,38 +165,38 @@ Lugar donde se pueden llegar a gestionar los servidores o maquinas virtuales en 
 
 En Power Automate, cuando se habla de un sistema de gobernanza, se refiere al conjunto de políticas, controles, roles y herramientas que una organización implementa para administrar de forma segura, eficiente y conforme el uso de los flujos (flows) y automatizaciones que los usuarios crean.
 
-🔍 ¿Qué incluye un sistema de gobernanza en Power Automate?
-1. Políticas de entorno (DLP – Data Loss Prevention)
+¿Qué incluye un sistema de gobernanza en Power Automate?
+#### Políticas de entorno (DLP – Data Loss Prevention)
 Controlan qué conectores se pueden usar juntos.
 
 Ejemplo: Evitar que datos de SharePoint se filtren hacia Gmail o Twitter.
 
-2. Gestión de entornos
+#### Gestión de entornos
 Crear entornos separados para desarrollo, pruebas y producción.
 
 Permite aislar flujos críticos de pruebas personales o temporales.
 
-3. Control de acceso y roles
+#### Control de acceso y roles
 Definir quién puede crear flujos, administrarlos o compartirlos.
 
 Uso de roles como Administrador de Entorno, Maker, Viewer, etc.
 
-4. Monitoreo y auditoría
+#### Monitoreo y auditoría
 Seguimiento de qué flujos están activos, cuántas veces se ejecutan, si fallan, etc.
 
 Uso de Power Platform Admin Center y Microsoft Purview.
 
-5. Ciclo de vida de desarrollo
+#### Ciclo de vida de desarrollo
 Estrategias para desplegar flujos entre entornos (desarrollo → producción).
 
 Uso de soluciones para empaquetar y mover flujos de forma ordenada.
 
-6. Capacitación y políticas internas
+#### Capacitación y políticas internas
 Asegurar que los usuarios sepan cómo usar Power Automate responsablemente.
 
 Crear documentación y normas internas de buenas prácticas.
 
-✅ ¿Por qué es importante tener gobernanza?
+¿Por qué es importante tener gobernanza?
 Sin una buena gobernanza:
 
 Los flujos pueden volverse difíciles de mantener.
@@ -209,15 +209,15 @@ Se generan duplicidades y automatizaciones ineficientes.
 
 Perfecto. Vamos a construir una estrategia de gobernanza para Power Automate paso a paso. Te presento un mapa estructurado que puedes adaptar a tu organización o equipo:
 
-🧭 Estrategia de Gobernanza para Power Automate
-1. Definir Roles y Responsabilidades
+### Estrategia de Gobernanza para Power Automate
+#### Definir Roles y Responsabilidades
 Rol	Responsabilidad Principal
 Administrador Global	Gestiona licencias, monitoreo global, acceso a todo.
 Administrador de Entorno	Administra entornos, asigna roles, configura políticas DLP.
 Creador de Flujos (Maker)	Desarrolla flujos dentro de los límites definidos.
 Auditor / Seguridad	Revisa logs, auditorías, cumplimiento de normas.
 
-2. Estructurar Entornos
+#### Estructurar Entornos
 Entorno	Uso
 Desarrollo	Pruebas y creación de flujos.
 QA / Validación	Validación funcional por otros usuarios.
@@ -226,7 +226,7 @@ Personal	Espacio libre para pruebas individuales.
 
 Nota: Usa nombres claros como PROD_Finanzas, DEV_RecursosHumanos, etc.
 
-3. Implementar Políticas de Prevención de Pérdida de Datos (DLP)
+#### Implementar Políticas de Prevención de Pérdida de Datos (DLP)
 Clasifica conectores como:
 
 Business (seguros): SharePoint, SQL, Dataverse.
@@ -241,14 +241,14 @@ plaintext
 Copy
 Edit
 No permitir combinar SharePoint (Business) con Gmail (Non-business)
-4. Uso de Soluciones
+#### Uso de Soluciones
 Utiliza "Soluciones" para empaquetar flujos, tablas y apps como una sola unidad.
 
 Permite mover fácilmente automatizaciones entre entornos (DEV → QA → PROD).
 
 Ideal para proyectos de varios desarrolladores.
 
-5. Monitoreo y Auditoría
+#### Monitoreo y Auditoría
 Herramientas clave:
 
 Power Platform Admin Center (https://admin.powerplatform.microsoft.com/)
@@ -263,7 +263,7 @@ Flujos que ejecutan acciones sensibles (ej. envíos de correo, borrado de datos)
 
 Quién creó y comparte flujos.
 
-6. Control de Versiones y Ciclo de Vida
+#### Control de Versiones y Ciclo de Vida
 Define procesos para:
 
 Solicitar nuevos flujos.
@@ -272,7 +272,7 @@ Revisar y aprobar antes de ir a producción.
 
 Documentar flujos y actualizaciones.
 
-7. Documentación y Buenas Prácticas
+#### Documentación y Buenas Prácticas
 Crear una guía interna que incluya:
 
 Reglas de nombrado (ej. FLW_ValidarFactura_Prod)
@@ -281,7 +281,7 @@ Recomendaciones de seguridad.
 
 Cómo reportar errores o mejoras.
 
-8. Capacitación Continua
+#### Capacitación Continua
 Dar capacitaciones mensuales o trimestrales.
 
 Promover una comunidad interna de makers.
