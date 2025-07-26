@@ -12,9 +12,15 @@
 - Decrement Variable
 - Set Variable
 - Append to string variable (Despues de este se pone el Compose para que se muestre la concatenacion de string)
-- Compose
+- Compose  Anexar strings a una cadena ya existente
 - Append to array variable (Agregarle mas elementos a una variable de array)
 - Condition
+- Join pertenece a Data Operation 
+- Create CSV Table pertenece Data Operation 
+- List rows present in a table
+- Create HTML Table de Data Operation
+- Send a Email (V2) de Office 365 Outlook
+- 
 
 #### Expresions
 
@@ -28,6 +34,13 @@
 - utcNow()
 - addDays()
 - addHours()
+- contains()
+- length() Longitud de una cadena
+- split() Separa en elementos de arreglo a partir de un separador
+- last() Obtiene el ultimo elemento de un array
+- first() Obtiene el primer elemento de un array
+- substring() Cortar ciertas cadenas
+- indexOf() 
 
 
 ## Video 4
@@ -400,3 +413,125 @@ Run
 ## Video 50 Palabras clave en cadens de texto
 
 ![1753427800224](image/README/1753427800224.png)
+
+## Video 51 Length
+
+![1753490323327](image/README/1753490323327.png)
+
+## Video 52 First, last y last
+
+![1753493078742](image/README/1753493078742.png)
+
+## Video 53, 54 Substring, IndexOf
+
+![1753493468676](image/README/1753493468676.png)
+![1753493450730](image/README/1753493450730.png)
+
+IndexOf
+
+![1753510774733](image/README/1753510774733.png)
+
+## Video 56 Join
+
+Inicializmos un array
+![1753511025103](image/README/1753511025103.png)
+
+Utilizamos la accion Join, lo que hace es unirnos los elementos de un array en una cadena separados por el caracter que le pongamos, en este caso por el punto y coma
+![1753511153039](image/README/1753511153039.png)
+
+Corremos
+![1753511390896](image/README/1753511390896.png)
+
+## Video 57 CSV Table
+
+Agregamos un array
+![1753512248934](image/README/1753512248934.png)
+
+Agregamos una accion de create table CSV
+![1753511750870](image/README/1753511750870.png)
+
+Se agrega la accion y se asigna la variable del array
+![1753511918796](image/README/1753511918796.png)
+
+Corremos
+![1753512313311](image/README/1753512313311.png)
+
+## Video 58 HTML Table
+
+Mandar una tabla HTML para mandarlo por correo electronico
+
+Agregar la accion "List rows present in a table"
+![1753513242713](image/README/1753513242713.png)
+
+Preparo un excel en OneDrive con una tabla
+![1753513913386](image/README/1753513913386.png)
+
+Si le damos en los 3 puntos, vemos que ya esta conectado con nuestra cuenta de OneDrive
+![1753513665074](image/README/1753513665074.png)
+
+Terminamos de agregar la referencia a nuestra tabla
+![1753513996215](image/README/1753513996215.png)
+
+Agregamos la accion Create HTML Table y agregamos los values
+![1753514142352](image/README/1753514142352.png)
+![1753514167697](image/README/1753514167697.png)
+
+Si lo ejecutamos obtenemos esta resultado
+![1753514266167](image/README/1753514266167.png)
+
+Agregamos la accion para mandar un correo "Send an Email (V2)"
+![1753514580283](image/README/1753514580283.png)
+
+Corremos, y si nos damos cuenta, salen otras columnas, y eso es porque la tabla HTML la hemos creado de forma automatica
+![1753514727343](image/README/1753514727343.png)
+![1753514699518](image/README/1753514699518.png)
+
+Si solo queremos los campos que se muestran en el excel
+![1753514873277](image/README/1753514873277.png)
+![1753514904549](image/README/1753514904549.png)
+
+Si corremos, nos muestra esto
+![1753514951823](image/README/1753514951823.png)
+![1753514974992](image/README/1753514974992.png)
+
+Si queremos una tabla con colores y mas llamativa, agregamos estilos CSS a traves de la accion Compose de Data Operation
+
+```css
+<style>
+table {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table tbody td {
+  font-size: 13px;
+}
+table thead {
+  background: #1C6EA4;
+  border-bottom: 2px solid #444444;
+}
+table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  border-left: 2px solid #D0E4F5;
+}
+table thead th:first-child {
+  border-left: none;
+}
+</style>
+```
+
+![1753515208109](image/README/1753515208109.png)
+![1753515326063](image/README/1753515326063.png)
+
+Corremos
+![1753515476393](image/README/1753515476393.png)
+![1753515435110](image/README/1753515435110.png)
+
