@@ -614,3 +614,23 @@ Sacar informacion de una propiedad de un Json que ya esta escructurado
 - Verificamos en nuestra carpeta de OneDrive
     - ![1753566001404](image/README/1753566001404.png)
 
+## Video 63 Guardar Adjuntos en un correo electronico en OneDrive - Parte 2
+
+- Creamos un nuevo flujo parecido al anterior 
+    - ![1753566530152](image/README/1753566530152.png)
+- Hacemos un copiado de un action `Apply to each attachment from specific user`
+    - ![1753566613150](image/README/1753566613150.png)
+- Y lo pegamos
+    - ![1753566694619](image/README/1753566694619.png)
+    - Y quedaria de esta forma
+        - ![1753566724505](image/README/1753566724505.png)
+- Borramos todo la condicion y todo lo que esta debajo 
+    - ![1753566797383](image/README/1753566797383.png)
+- Agregamos los filtros para que se dispare automaticamente por trigger
+    - ![1753567298328](image/README/1753567298328.png)
+- Corremos el flujo
+    - ![1753567414841](image/README/1753567414841.png)
+- Enviamos el correo
+    - ![1753567443257](image/README/1753567443257.png)
+- Vamos a la carpeta de OneDrive que configuramos
+    - ![1753567486224](image/README/1753567486224.png)
