@@ -24,6 +24,8 @@
 - Do Until de Control
 - Increment Variable
 - On new email (Cuando llega un nuevo correo a nuestra bandeja)
+- Move or rename a file dentro de OneDrive for Business
+- 
 
 #### Expresions
 
@@ -634,3 +636,36 @@ Sacar informacion de una propiedad de un Json que ya esta escructurado
     - ![1753567443257](image/README/1753567443257.png)
 - Vamos a la carpeta de OneDrive que configuramos
     - ![1753567486224](image/README/1753567486224.png)
+
+## Video 64 Notificaciones en bibliotecas de documentos
+
+Ahora vamos a subir un archivo a OneDrive, y cuando se suba vamos a mandar un correo
+
+- Creamos una nueva carpeta en One Drive
+- Creamos un flujo de nube automatizado
+    - ![1753578625379](image/README/1753578625379.png)
+- Le agregamos la ruta de cuando subamos archivos
+    - ![1753582729643](image/README/1753582729643.png)
+- Agregamos la accion
+    - ![1753582762896](image/README/1753582762896.png)
+- Corremos y verificamos el resultado
+    - ![1753582905436](image/README/1753582905436.png)
+ 
+## Video 65 Ejercicio - Enunciado
+
+![1753588201292](image/README/1753588201292.png)
+
+## Video 66 Ejercicio - Solucion Practica 1
+
+- Subir un archivo a una carpeta publica y despues se moveria a una carpeta privada
+- Creamos 2 carpetas
+    - ![1753588600228](image/README/1753588600228.png)
+- Agregamos un action `Move or rename a file`
+    - ![1753589109041](image/README/1753589109041.png)
+- Corremos y funciona a la perfeccion
+    - ![1753589239429](image/README/1753589239429.png)
+- Verificamos el archivo en la carpeta privada
+    - ![1753589262304](image/README/1753589262304.png)
+
+## Video 67 Ejercicio - Solucion Practica 2
+
