@@ -7,3 +7,5 @@
 ![1755763889420](image/bestPracticesVideo/1755763889420.png)
 
 ![1755763962070](image/bestPracticesVideo/1755763962070.png)
+
+![1755764110261](image/bestPracticesVideo/1755764110261.png)
