@@ -1,11 +1,15 @@
 # UDY-PowerAutomate
 
-## Conectores 
+https://learn.microsoft.com/en-us/power-automate/guidance/coding-guidelines/
+https://learn.microsoft.com/en-us/power-automate/guidance/desktop-flow-coding-guidelines/build-readable-flow-scripts
+
+
+## Conectores
 
 #### Actions
 
 - Input
-- Delay 
+- Delay
 - Delay Unitil (Parate hasta que se cumpla alguna condicion)
 - Initialize Variable
 - Increment Variable
@@ -15,8 +19,8 @@
 - Compose  Anexar strings a una cadena ya existente
 - Append to array variable (Agregarle mas elementos a una variable de array)
 - Condition
-- Join pertenece a Data Operation 
-- Create CSV Table pertenece Data Operation 
+- Join pertenece a Data Operation
+- Create CSV Table pertenece Data Operation
 - List rows present in a table
 - Create HTML Table de Data Operation
 - Send a Email (V2) de Office 365 Outlook
@@ -45,13 +49,14 @@
 - last() Obtiene el ultimo elemento de un array
 - first() Obtiene el primer elemento de un array
 - substring() Cortar ciertas cadenas
-- indexOf() 
+- indexOf()
 
 #### Bibliotecas de Microsoft
 
 - OneDrive
 
 ## Video 4
+
 ![1752516073584](image/README/1752516073584.png)
 
 ## Video 5, 6
@@ -63,9 +68,11 @@
 ![1752625535032](image/README/1752625535032.png)
 
 ## Video 9 Casos de Uso
+
 ![1752625821315](image/README/1752625821315.png)
 
 ## Video 10 Introduccion a la Power Platform
+
 ![1752638398920](image/README/1752638398920.png)
 
 PowerBi
@@ -82,7 +89,7 @@ PowerPages
 
 CopilotStudio - Facilita la integracion de Inteligencia Artificial
 
-DataConector 
+DataConector
 
 Dataverse - DB propia de Microsoft
 ![1752638632602](image/README/1752638632602.png)
@@ -112,15 +119,15 @@ Un conector es un vinculo entre una plataforma externa con PowerAutomate.
 
 ## Video 16 Tipos de Flujo
 
-- Cloud 
-    - Automatizado 
-        - Se ejecuta cuando hay un disparador
-    - Instantaneo
-        - Se ejecuta de manera manual
-    - Programado
-        - Es lo que se ejecuta a una hora determinada en un periodo (CRON)
+- Cloud
+  - Automatizado
+    - Se ejecuta cuando hay un disparador
+  - Instantaneo
+    - Se ejecuta de manera manual
+  - Programado
+    - Es lo que se ejecuta a una hora determinada en un periodo (CRON)
 - Escritorio
-    - El proceso se correo dentro de la maquina donde esta instalado
+  - El proceso se correo dentro de la maquina donde esta instalado
 
 ## Video 17 Licencia M365
 
@@ -146,13 +153,14 @@ Crear proceso automaticos de Power Automate que incorporen inteligencia artifici
 
 - **Tablas**
 
-Son las escructuras de datos que ya vienen predefinidas 
+Son las escructuras de datos que ya vienen predefinidas
 
 ![1752641953790](image/README/1752641953790.png)
 
 - **Conexiones**
 
-Se muestran las aplicaciones a las que tengo conectadas mis credenciales 
+Se muestran las aplicaciones a las que tengo conectadas mis credenciales
+
 ## Investigacion "Sistema de Gobernanza"
 
 - **Colas de trabajo**
@@ -167,39 +175,44 @@ Lugar donde se pueden llegar a gestionar los servidores o maquinas virtuales en 
 
 ![1752642995626](image/README/1752642995626.png)
 
-
 ## Investigacion "Sistema de Gobernaza"
-
 
 En Power Automate, cuando se habla de un sistema de gobernanza, se refiere al conjunto de políticas, controles, roles y herramientas que una organización implementa para administrar de forma segura, eficiente y conforme el uso de los flujos (flows) y automatizaciones que los usuarios crean.
 
 ¿Qué incluye un sistema de gobernanza en Power Automate?
+
 #### Políticas de entorno (DLP – Data Loss Prevention)
+
 Controlan qué conectores se pueden usar juntos.
 
 Ejemplo: Evitar que datos de SharePoint se filtren hacia Gmail o Twitter.
 
 #### Gestión de entornos
+
 Crear entornos separados para desarrollo, pruebas y producción.
 
 Permite aislar flujos críticos de pruebas personales o temporales.
 
 #### Control de acceso y roles
+
 Definir quién puede crear flujos, administrarlos o compartirlos.
 
 Uso de roles como Administrador de Entorno, Maker, Viewer, etc.
 
 #### Monitoreo y auditoría
+
 Seguimiento de qué flujos están activos, cuántas veces se ejecutan, si fallan, etc.
 
 Uso de Power Platform Admin Center y Microsoft Purview.
 
 #### Ciclo de vida de desarrollo
+
 Estrategias para desplegar flujos entre entornos (desarrollo → producción).
 
 Uso de soluciones para empaquetar y mover flujos de forma ordenada.
 
 #### Capacitación y políticas internas
+
 Asegurar que los usuarios sepan cómo usar Power Automate responsablemente.
 
 Crear documentación y normas internas de buenas prácticas.
@@ -218,7 +231,9 @@ Se generan duplicidades y automatizaciones ineficientes.
 Perfecto. Vamos a construir una estrategia de gobernanza para Power Automate paso a paso. Te presento un mapa estructurado que puedes adaptar a tu organización o equipo:
 
 ### Estrategia de Gobernanza para Power Automate
+
 #### Definir Roles y Responsabilidades
+
 Rol	Responsabilidad Principal
 Administrador Global	Gestiona licencias, monitoreo global, acceso a todo.
 Administrador de Entorno	Administra entornos, asigna roles, configura políticas DLP.
@@ -226,6 +241,7 @@ Creador de Flujos (Maker)	Desarrolla flujos dentro de los límites definidos.
 Auditor / Seguridad	Revisa logs, auditorías, cumplimiento de normas.
 
 #### Estructurar Entornos
+
 Entorno	Uso
 Desarrollo	Pruebas y creación de flujos.
 QA / Validación	Validación funcional por otros usuarios.
@@ -235,6 +251,7 @@ Personal	Espacio libre para pruebas individuales.
 Nota: Usa nombres claros como PROD_Finanzas, DEV_RecursosHumanos, etc.
 
 #### Implementar Políticas de Prevención de Pérdida de Datos (DLP)
+
 Clasifica conectores como:
 
 Business (seguros): SharePoint, SQL, Dataverse.
@@ -249,7 +266,9 @@ plaintext
 Copy
 Edit
 No permitir combinar SharePoint (Business) con Gmail (Non-business)
+
 #### Uso de Soluciones
+
 Utiliza "Soluciones" para empaquetar flujos, tablas y apps como una sola unidad.
 
 Permite mover fácilmente automatizaciones entre entornos (DEV → QA → PROD).
@@ -257,6 +276,7 @@ Permite mover fácilmente automatizaciones entre entornos (DEV → QA → PROD).
 Ideal para proyectos de varios desarrolladores.
 
 #### Monitoreo y Auditoría
+
 Herramientas clave:
 
 Power Platform Admin Center (https://admin.powerplatform.microsoft.com/)
@@ -272,6 +292,7 @@ Flujos que ejecutan acciones sensibles (ej. envíos de correo, borrado de datos)
 Quién creó y comparte flujos.
 
 #### Control de Versiones y Ciclo de Vida
+
 Define procesos para:
 
 Solicitar nuevos flujos.
@@ -281,6 +302,7 @@ Revisar y aprobar antes de ir a producción.
 Documentar flujos y actualizaciones.
 
 #### Documentación y Buenas Prácticas
+
 Crear una guía interna que incluya:
 
 Reglas de nombrado (ej. FLW_ValidarFactura_Prod)
@@ -290,6 +312,7 @@ Recomendaciones de seguridad.
 Cómo reportar errores o mejoras.
 
 #### Capacitación Continua
+
 Dar capacitaciones mensuales o trimestrales.
 
 Promover una comunidad interna de makers.
@@ -327,7 +350,7 @@ https://admin.powerplatform.microsoft.com/enviroments
 
 ## Video 23, 24, 25 Flujo de nube automatico, Instantaneo, Programado
 
-Vemos los distintos tipos de flujos que podemos crear 
+Vemos los distintos tipos de flujos que podemos crear
 
 ![1752806921653](image/README/1752806921653.png)
 
@@ -356,8 +379,9 @@ Le damos click derecho para que salga la opcion en el signo de +
 Va a ver ocaciones donde tengamos muchas ramas, muchos proceso y tengamos que hacer clonaciones
 
 Click Derecho sobre el Action
+
 * ![1753319576238](image/README/1753319576238.png)
-Pegamos dando Click Derecho en el Boton de + y escojemos Paste an Action
+  Pegamos dando Click Derecho en el Boton de + y escojemos Paste an Action
 * ![1753319681579](image/README/1753319681579.png)
 
 ## Video 36 38 Crear flujos con IA
@@ -379,7 +403,7 @@ Pegamos dando Click Derecho en el Boton de + y escojemos Paste an Action
 ![1753419967668](image/README/1753419967668.png)
 ![1753419994527](image/README/1753419994527.png)
 
-Run 
+Run
 ![1753420036646](image/README/1753420036646.png)
 ![1753420051043](image/README/1753420051043.png)
 ![1753420075589](image/README/1753420075589.png)
@@ -402,7 +426,7 @@ El resultado de lado izquierdo es false, y false es igual a false, ese resultado
 
 ## Video 47 Unir distintos textos
 
-![1753425121920](image/README/1753425121920.png) 
+![1753425121920](image/README/1753425121920.png)
 ![1753425219238](image/README/1753425219238.png)
 
 ## Video 48 Expresiones de tiempo - Parte 1
@@ -548,94 +572,93 @@ Corremos
 Sacar informacion de una propiedad de un Json que ya esta escructurado
 
 - Inicializamos la variable
-    - ![1753559570205](image/README/1753559570205.png)
+  - ![1753559570205](image/README/1753559570205.png)
 - Agregamos la accion `Parse to Json` y agregamos la variable y le damos click en Generate From Sample
-    - ![1753559630869](image/README/1753559630869.png) 
+  - ![1753559630869](image/README/1753559630869.png)
 - Pegamos la misma escructura ya que no va a cambiar la escructura
-    - ![1753559685116](image/README/1753559685116.png)
+  - ![1753559685116](image/README/1753559685116.png)
 - Despues de haberle Dado en Done nos va a generar esta escructura
-    - ![1753559727282](image/README/1753559727282.png)
+  - ![1753559727282](image/README/1753559727282.png)
 - Agregamos una nueva variable y en el valor, ahora vemos las propiedades de nuestro JSON, para posteriormente elegir Ciudad
-    - ![1753559908608](image/README/1753559908608.png)
-    - ![1753559961061](image/README/1753559961061.png)
-- Si corremos la aplicacion 
-    - ![1753560013977](image/README/1753560013977.png)
-
+  - ![1753559908608](image/README/1753559908608.png)
+  - ![1753559961061](image/README/1753559961061.png)
+- Si corremos la aplicacion
+  - ![1753560013977](image/README/1753560013977.png)
 
 ## Video 60 Repetir hasta
 
 - Agregamos una variable inicializada en Zero
 - Agregamos la accion `Do Until` de Control y agregamos la condicion para que se detenga
-    - ![1753560485665](image/README/1753560485665.png)
+  - ![1753560485665](image/README/1753560485665.png)
 - Agregamos dentro una incrementacion de variable
-    - ![1753560568735](image/README/1753560568735.png)
+  - ![1753560568735](image/README/1753560568735.png)
 - Agregamos una nueva variable
-    - ![1753560933679](image/README/1753560933679.png)
+  - ![1753560933679](image/README/1753560933679.png)
 - Corremos la aplicacion y en el ciclo podemos ver el valor de cada una de las variables de cada iteracion
-    - ![1753561123414](image/README/1753561123414.png)
+  - ![1753561123414](image/README/1753561123414.png)
 
 # Seccion 7: Automatizaciones en bibliotecas de documentos y listas de elementos
 
 ## Video 61 Introduccion a las bibliotecas de documentos de Microsoft
 
 - Por conocer.- Si nos vamos a OneDrive podemos crear flujos
-    - ![1753561497066](image/README/1753561497066.png)
+  - ![1753561497066](image/README/1753561497066.png)
 - Y nos salen diferentes tipos de flujos que podemos realizar en base a la informacion que tenemos en nuestra carpeta
-    - ![1753561538582](image/README/1753561538582.png)
+  - ![1753561538582](image/README/1753561538582.png)
 - Con SharePoint podemos crear sitios o noticias
-    - ![1753561712927](image/README/1753561712927.png)
+  - ![1753561712927](image/README/1753561712927.png)
 
 ## Video 62 Guardar adjuntos de un correo electronico en OneDrive - Parte 1
 
-- Buscamos una plantilla que nos permita guardar archivos adjuntos de un correo en OneDrive 
-    - **NOTA.-** Como estamos en un correo de dominio empresarial, debemos escoger una plantillas que haga referencia a un correo de dominio empresarial @cuprum.com y no a un dominio @outlook.com
-        - ![1753562399615](image/README/1753562399615.png)
-        - Le Damos en continuar
-        - ![1753562552872](image/README/1753562552872.png)
-- Sale esto 
-    - Donde nosotros podemos poner la condicion, en este caso esta la condicion 
-        - `De` para evaluar si viende de alguna persona en particular, pero tambien podemos 
-        - `Body`como si en el cuerpo viente cierto campo, evaluar el nivel de importancia del correo, etc
-        - `Asunto` que en el asunto detectemos cierta palabra clave
-    - ![1753562861979](image/README/1753562861979.png)
-    - En este caso escojemos asunto
-        - ![1753566125268](image/README/1753566125268.png)
+- Buscamos una plantilla que nos permita guardar archivos adjuntos de un correo en OneDrive
+  - **NOTA.-** Como estamos en un correo de dominio empresarial, debemos escoger una plantillas que haga referencia a un correo de dominio empresarial @cuprum.com y no a un dominio @outlook.com
+    - ![1753562399615](image/README/1753562399615.png)
+    - Le Damos en continuar
+    - ![1753562552872](image/README/1753562552872.png)
+- Sale esto
+  - Donde nosotros podemos poner la condicion, en este caso esta la condicion
+    - `De` para evaluar si viende de alguna persona en particular, pero tambien podemos
+    - `Body`como si en el cuerpo viente cierto campo, evaluar el nivel de importancia del correo, etc
+    - `Asunto` que en el asunto detectemos cierta palabra clave
+  - ![1753562861979](image/README/1753562861979.png)
+  - En este caso escojemos asunto
+    - ![1753566125268](image/README/1753566125268.png)
 - Dentro de la condicion
-    - En esta parte solo esta la logica para recibir un adjunto, pero si nos llegan 25 adjuntos por ejemplo, tendriamos que hacer el mismo proceso 25 veses, pero ahorita solo esta para una ves
-    - ![1753564547572](image/README/1753564547572.png)
-    - Cambie el directorio a guardar ![1753564737032](image/README/1753564737032.png)
-        - Es muy importante que mappeemos correctamente los attachments en su correspondiente campo para que funcione
-            - ![1753564598443](image/README/1753564598443.png)
-            - ![1753564610387](image/README/1753564610387.png)
-            - ![1753564622035](image/README/1753564622035.png)
-    - En caso de que sea `FALSE` guardamos los adjuntos en otra carpeta
-        - ![1753564844219](image/README/1753564844219.png)
+  - En esta parte solo esta la logica para recibir un adjunto, pero si nos llegan 25 adjuntos por ejemplo, tendriamos que hacer el mismo proceso 25 veses, pero ahorita solo esta para una ves
+  - ![1753564547572](image/README/1753564547572.png)
+  - Cambie el directorio a guardar ![1753564737032](image/README/1753564737032.png)
+    - Es muy importante que mappeemos correctamente los attachments en su correspondiente campo para que funcione
+      - ![1753564598443](image/README/1753564598443.png)
+      - ![1753564610387](image/README/1753564610387.png)
+      - ![1753564622035](image/README/1753564622035.png)
+  - En caso de que sea `FALSE` guardamos los adjuntos en otra carpeta
+    - ![1753564844219](image/README/1753564844219.png)
 - Corremos el flujo
 - Eviamos un correo
-    - ![1753565966783](image/README/1753565966783.png)
+  - ![1753565966783](image/README/1753565966783.png)
 - Verificamos en nuestra carpeta de OneDrive
-    - ![1753566001404](image/README/1753566001404.png)
+  - ![1753566001404](image/README/1753566001404.png)
 
 ## Video 63 Guardar Adjuntos en un correo electronico en OneDrive - Parte 2
 
-- Creamos un nuevo flujo parecido al anterior 
-    - ![1753566530152](image/README/1753566530152.png)
+- Creamos un nuevo flujo parecido al anterior
+  - ![1753566530152](image/README/1753566530152.png)
 - Hacemos un copiado de un action `Apply to each attachment from specific user`
-    - ![1753566613150](image/README/1753566613150.png)
+  - ![1753566613150](image/README/1753566613150.png)
 - Y lo pegamos
-    - ![1753566694619](image/README/1753566694619.png)
-    - Y quedaria de esta forma
-        - ![1753566724505](image/README/1753566724505.png)
-- Borramos todo la condicion y todo lo que esta debajo 
-    - ![1753566797383](image/README/1753566797383.png)
+  - ![1753566694619](image/README/1753566694619.png)
+  - Y quedaria de esta forma
+    - ![1753566724505](image/README/1753566724505.png)
+- Borramos todo la condicion y todo lo que esta debajo
+  - ![1753566797383](image/README/1753566797383.png)
 - Agregamos los filtros para que se dispare automaticamente por trigger
-    - ![1753567298328](image/README/1753567298328.png)
+  - ![1753567298328](image/README/1753567298328.png)
 - Corremos el flujo
-    - ![1753567414841](image/README/1753567414841.png)
+  - ![1753567414841](image/README/1753567414841.png)
 - Enviamos el correo
-    - ![1753567443257](image/README/1753567443257.png)
+  - ![1753567443257](image/README/1753567443257.png)
 - Vamos a la carpeta de OneDrive que configuramos
-    - ![1753567486224](image/README/1753567486224.png)
+  - ![1753567486224](image/README/1753567486224.png)
 
 ## Video 64 Notificaciones en bibliotecas de documentos
 
@@ -643,14 +666,14 @@ Ahora vamos a subir un archivo a OneDrive, y cuando se suba vamos a mandar un co
 
 - Creamos una nueva carpeta en One Drive
 - Creamos un flujo de nube automatizado
-    - ![1753578625379](image/README/1753578625379.png)
+  - ![1753578625379](image/README/1753578625379.png)
 - Le agregamos la ruta de cuando subamos archivos
-    - ![1753582729643](image/README/1753582729643.png)
+  - ![1753582729643](image/README/1753582729643.png)
 - Agregamos la accion
-    - ![1753582762896](image/README/1753582762896.png)
+  - ![1753582762896](image/README/1753582762896.png)
 - Corremos y verificamos el resultado
-    - ![1753582905436](image/README/1753582905436.png)
- 
+  - ![1753582905436](image/README/1753582905436.png)
+
 ## Video 65 Ejercicio - Enunciado
 
 ![1753588201292](image/README/1753588201292.png)
@@ -659,13 +682,12 @@ Ahora vamos a subir un archivo a OneDrive, y cuando se suba vamos a mandar un co
 
 - Subir un archivo a una carpeta publica y despues se moveria a una carpeta privada
 - Creamos 2 carpetas
-    - ![1753588600228](image/README/1753588600228.png)
+  - ![1753588600228](image/README/1753588600228.png)
 - Agregamos un action `Move or rename a file`
-    - ![1753589109041](image/README/1753589109041.png)
+  - ![1753589109041](image/README/1753589109041.png)
 - Corremos y funciona a la perfeccion
-    - ![1753589239429](image/README/1753589239429.png)
+  - ![1753589239429](image/README/1753589239429.png)
 - Verificamos el archivo en la carpeta privada
-    - ![1753589262304](image/README/1753589262304.png)
+  - ![1753589262304](image/README/1753589262304.png)
 
 ## Video 67 Ejercicio - Solucion Practica 2
-
