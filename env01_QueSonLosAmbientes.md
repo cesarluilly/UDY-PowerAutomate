@@ -1,3 +1,7 @@
+[Power Platform environments overview - Power Platform | Microsoft Learn](https://learn.microsoft.com/en-us/power-platform/admin/environments-overview?tabs=new)
+
+
+
 Muy buena pregunta 👌. En **Power Platform** (incluido Power Automate), un **ambiente (environment)** es un **contenedor lógico** que sirve para organizar, aislar y administrar los recursos que usas en tus flujos, apps y demás componentes.
 
 ---
