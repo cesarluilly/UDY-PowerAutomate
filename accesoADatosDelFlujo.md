@@ -13,9 +13,6 @@
 | **Resultado de un Scope/Until/ForEach**      | `result('ScopeName')`                  | `result('Scope_Main')`                   | Devuelve inputs/outputs de las acciones internas.[Microsoft Learn](https://learn.microsoft.com/en-us/azure/logic-apps/expression-functions-reference?utm_source=chatgpt.com)                                                                                                                                                                                                                                    |
 
 > Consejo: camino “tipo ruta” también sirve, p. ej. `triggerOutputs()?['body/Customer/Name']`. [D365 Demystified](https://d365demystified.com/tag/triggeroutputs/?utm_source=chatgpt.com)
->
-
-
 
 # Acceso a datos de acciones: comparativa rápida
 
@@ -59,4 +56,108 @@
 > ⚠️ Con la notación de **puntos** (`.`) no puedes poner `?` entre segmentos. Si hay riesgo de `null`, cambia a **corchetes** con `?`:
 >
 > `actions('A')?['outputs']?['body']?['prop']`
->
+
+
+# item() contexto dentro de un Map que esta dentro de un ForEach
+
+![1756105516679](image/accesoADatosDelFlujo/1756105516679.png)
+
+
+Buen ojo. Esa parte seleccionada está dentro de un **Select** (no dentro de un  *Apply to each* ), y el **Select itera internamente** sobre el array que pusiste en  **From** :
+
+<pre class="overflow-visible!" data-start="173" data-end="319"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-text"><span><span>From = union(
+  coalesce(body('Seleccionar_StampedPDFs'), createArray()),
+  coalesce(body('Seleccionar_StampedXMLs'), createArray())
+)
+</span></span></code></div></div></pre>
+
+Así que:
+
+* **`item()`** aquí se refiere al **elemento actual de esa iteración del Select** (cada objeto proveniente de la unión de PDFs + XMLs).
+* No está “tomando el elemento actual del foreach”; es el  **elemento actual del propio Select** .
+
+En el mapeo:
+
+<pre class="overflow-visible!" data-start="579" data-end="903"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>"content"</span><span>:</span><span></span><span>"@item()?['ContentBytes']?['$content']"</span><span>,</span><span>
+</span><span>"filename"</span><span>:</span><span></span><span>"@item()?['Name']"</span><span>,</span><span>
+</span><span>"type"</span><span>:</span><span> "@{if( endsWith(toLower(item()?['Name']), '.pdf'), 'application/pdf',
+          if( endsWith(toLower(item()?['Name']), '.xml'), 'application/xml',
+              'application/octet-stream'))}"</span><span>,</span><span>
+</span><span>"disposition"</span><span>:</span><span></span><span>"attachment"</span><span>
+</span></span></code></div></div></pre>
+
+Qué hace cada uno:
+
+1. **`content`**
+   * Accede a la propiedad **anidada** del elemento actual: `ContentBytes.$content`.
+   * Eso es el **Base64** del archivo (Power Automate envuelve binarios como `{ "content-type": "...", "$content": "..." }`).
+2. **`filename`**
+   * Toma el nombre del archivo del elemento actual: `Name`.
+3. **`type`**
+   * Calcula el **content-type** según la extensión del `Name`:
+     * `.pdf` → `application/pdf`
+     * `.xml` → `application/xml`
+     * otro → `application/octet-stream` (genérico).
+4. **`disposition`**
+   * Lo fija como `"attachment"` (lo que SendGrid espera para adjuntos).
+
+Resumen: el **Select** combina las dos listas (PDFs+XMLs), **itera** sobre cada item (eso es `item()`), y **mapea** a la forma que necesita SendGrid para  **attachments** .
+
+# Caso de acceder a un Elemento del Foreach dentro de un Action Select
+
+###### ChatGPT said:
+
+Muy buena pregunta 👌.
+
+En  **Power Automate** , cuando estás en un **Select** (como en tu caso), el `item()` hace referencia  **solo al objeto actual de ese Select** , no al *For each* externo.
+
+Si quieres traer dentro del **map** del Select un valor que proviene de un **For each** (o de cualquier otro contexto externo), tienes que:
+
+---
+
+### 🔑 Forma de acceder a la propiedad del *For each* externo
+
+* Usar la función `items('<nombre_del_for_each>')` → esto apunta al  **ítem actual de ese For each** .
+* Ejemplo si tu *For each* se llama `ForEach_Customers`:
+
+<pre class="overflow-visible!" data-start="568" data-end="621"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-text"><span><span>items('ForEach_Customers')?['CustomerId']
+</span></span></code></div></div></pre>
+
+Eso devolverá la propiedad `CustomerId` del objeto en el bucle externo.
+
+---
+
+### 🚀 Cómo combinarlo con tu `Select`
+
+Supongamos que tu Select está generando los adjuntos para SendGrid y quieres incluir, por ejemplo, el `CustomerId` que viene del *For each* externo:
+
+<pre class="overflow-visible!" data-start="890" data-end="1054"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>{</span><span>
+  </span><span>"content"</span><span>:</span><span></span><span>"@item()?['ContentBytes']?['$content']"</span><span>,</span><span>
+  </span><span>"filename"</span><span>:</span><span></span><span>"@item()?['Name']"</span><span>,</span><span>
+  </span><span>"customerId"</span><span>:</span><span></span><span>"@items('ForEach_Customers')?['CustomerId']"</span><span>
+</span><span>}</span><span>
+</span></span></code></div></div></pre>
+
+---
+
+### ⚡ Ejemplo práctico
+
+1. *For each* recorre clientes.
+2. Dentro del For each haces un Select para mapear los PDFs/XMLs de ese cliente.
+3. En el Select usas:
+   * `item()` → cada archivo (PDF/XML).
+   * `items('ForEach_Customers')?['CustomerName']` → nombre del cliente actual.
+
+Así podrías armar algo como:
+
+<pre class="overflow-visible!" data-start="1380" data-end="1647"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>{</span><span>
+  </span><span>"content"</span><span>:</span><span></span><span>"@item()?['ContentBytes']?['$content']"</span><span>,</span><span>
+  </span><span>"filename"</span><span>:</span><span></span><span>"@item()?['Name']"</span><span>,</span><span>
+  </span><span>"type"</span><span>:</span><span></span><span>"@{if(endsWith(toLower(item()?['Name']), '.pdf'),'application/pdf','application/xml')}"</span><span>,</span><span>
+  </span><span>"customerName"</span><span>:</span><span></span><span>"@items('ForEach_Customers')?['CustomerName']"</span><span>
+</span><span>}</span><span>
+</span></span></code></div></div></pre>
+
+---
+
+👉 Con esto tu Select “hereda” datos del **ítem actual externo** (For each) y los mezcla con lo que trae internamente.

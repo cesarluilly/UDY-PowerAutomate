@@ -1,5 +1,3 @@
-
-
 ¡Excelente que quieras estandarizar! Aquí tienes un **mapa conceptual** de convenciones de nomenclatura para Power Automate (cloud flows) pensado para equipos (Dev/QA/Prod). Mantiene los nombres  **claros, buscables y consistentes** .
 
 # Principios globales
@@ -43,7 +41,7 @@
 
 > Sugerencia: usa **prefijo por conector** (`HTTP_`, `SQL_`, `SP_`, `DV_`) y  **sufijo de propósito** .
 
-# Variables 
+# Variables
 
 ## Initialize Variable
 
@@ -77,7 +75,6 @@
 * `var_strNombreCliente_Set`
 * `var_arrFacturasPendientes_Set`
 * `var_boolEsValido_Set`
-
 
 ## 3. **Append to Array Variable** (cuando se agregan elementos)
 
@@ -158,8 +155,6 @@
   * **Case QA** → `HTTP_SendGrid_SendMail` (con `EV_SendGrid_To_QA`)
   * **Default** (DEV) → `HTTP_SendGrid_SendMail` (to dev)
 * `Scope_ErrorHandling` (run after: has failed)
-
-
 
 # 📑 Catálogo de convenciones de nombres para Actions
 
@@ -385,8 +380,6 @@ Yo lo nombraría:
 
   👉 `filter_http_GetCustomers_FindByRFC`
 
-
-
 # 📑 Convenciones de nombres para Data Operations
 
 | **Tipo de Action**                | **Convención recomendada**    | **Ejemplo**                  | **Explicación**                     |
@@ -407,20 +400,19 @@ Yo lo nombraría:
 1. **Consulta SQL** :
 
    `sql_hubFac_GetRFCs`
-
-1. **Filter array** (validar RFCs no vacíos):
+2. **Filter array** (validar RFCs no vacíos):
 
    `filter_HubFac_RFCs_NotEmpty`
-2. **Select** (quedarse solo con campo `ReceiverRFC`):
+3. **Select** (quedarse solo con campo `ReceiverRFC`):
 
    `select_HubFac_RFCs_ReceiverOnly`
-3. **Join** (convertir en string separado por comas):
+4. **Join** (convertir en string separado por comas):
 
    `join_HubFac_RFCs_CommaSeparated`
-4. **Compose** (preparar header para siguiente request):
+5. **Compose** (preparar header para siguiente request):
 
    `compose_BuildAuthHeader`
-5. **Parse JSON** (respuesta de API de envío de correos):
+6. **Parse JSON** (respuesta de API de envío de correos):
 
    `parse_SendGrid_Response`
 
@@ -466,7 +458,6 @@ Así, aunque tengas 20 filtros y 5 selects, a simple vista sabes qué hace cada 
 | **Flags / feature**                          | `ff_<Nombre>`                     | `ff_SkipEmail`,`ff_DryRun`                                                                                                                                                        | Actívalos por EV.                                                   |
 
 # Solutions . Manera correcta de nombrar al Proceso ORG.Area.Proceso
-
 
 La convención **`ORG.Area.Proceso`** te da un marco claro, pero lo que más cuesta es cómo nombrar ese **proceso** de forma que sea entendible y estándar para todos.
 
@@ -532,8 +523,6 @@ Si tu Solution maneja correos de facturación, el nombre ideal sería:
 
 Y dentro de esa solution ya metes los flujos relacionados a ese proceso.
 
-
-
 # 📘 Convención de Nombres para Power Automate
 
 ## 1. **Solutions**
@@ -556,8 +545,6 @@ Formato recomendado:
 ---
 
 ## 2. **Flows dentro de la Solution**
-
-
 
 ### 🔹 Estilo “corchetes + espacios” (más legible en interfaz)
 
@@ -588,7 +575,6 @@ Formato recomendado (más legible en UI):
 * `[Staff] Validar Correos – HTTP`
 * `[Staff] Reintentar Envios – Manual`
 
-
 ### 🔹 Estilo “puntos” (más técnico / jerárquico)
 
 `ORG.Area.Proceso.Acción`
@@ -612,7 +598,6 @@ Ejemplo:
 
 * `Cuprum.Staff.EnviarFacturasClientes.EnviarFacturas`
 
-
 ## 🔹 Entonces, ¿cuál usar para nombre de flujos?
 
 * Si tu equipo es **muy técnico** y quiere mantener todo **alineado con Solutions y repositorios** → mejor usar el formato con  **puntos** .
@@ -620,9 +605,7 @@ Ejemplo:
 
 ---
 
-
 # Caso de Uso de Nombre de Solution
-
 
 ## 📌 1. Nombre sugerido por tu gerente
 
@@ -904,7 +887,6 @@ Esto hace que al mover la solución, no tengas que cambiar nada en los flujos.
 * Evita cosas como: `env_variable_facturas_url_api_link` (demasiado largo y redundante).
 * Mejor: `env_facturas_api_url`.
 
-
 ## 📌 Ejemplos comunes de variables de ambiente
 
 | Variable                           | Ejemplo                           | Uso                                                                                  |
@@ -916,3 +898,120 @@ Esto hace que al mover la solución, no tengas que cambiar nada en los flujos.
 | **Nombre de recurso**        | `env_sharepoint_site_name`      | Nombre del sitio de SharePoint asociado al flujo.                                    |
 | **Booleano de control**      | `env_habilitar_debug_bool`      | Habilitar o deshabilitar logs/tracing.                                               |
 | **Entero de configuración** | `env_max_retries_int`           | Número máximo de reintentos antes de fallar.                                       |
+
+
+
+# 📌 ¿Qué es el action  **Select** ?
+
+El **Select** sirve para **transformar** un array de objetos en un nuevo array, proyectando solo los campos que necesitas o calculando otros nuevos.
+
+👉 Piensa en él como un **map** (en programación) o como un  **SELECT de SQL** : tomas datos de entrada y devuelves la estructura con las columnas que quieras.
+
+---
+
+# 🎯 Usos principales del `Select`
+
+1. **Reducir datos** : quedarte solo con las propiedades relevantes de cada objeto.
+2. **Renombrar propiedades** : cambiar los nombres de las claves.
+3. **Calcular nuevos campos** : armar campos con expresiones.
+4. **Preparar datos** para otro sistema (ejemplo: API que espera estructura distinta).
+
+---
+
+# ✅ Ejemplos prácticos
+
+### Ejemplo 1 – Simplificar un array
+
+Entrada (desde un “Get items” de SharePoint):
+
+<pre class="overflow-visible!" data-start="960" data-end="1109"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>[</span><span>
+  </span><span>{</span><span></span><span>"Title"</span><span>:</span><span></span><span>"Factura 001"</span><span>,</span><span></span><span>"Amount"</span><span>:</span><span></span><span>2500</span><span>,</span><span></span><span>"Status"</span><span>:</span><span></span><span>"Pending"</span><span></span><span>}</span><span>,</span><span>
+  </span><span>{</span><span></span><span>"Title"</span><span>:</span><span></span><span>"Factura 002"</span><span>,</span><span></span><span>"Amount"</span><span>:</span><span></span><span>4800</span><span>,</span><span></span><span>"Status"</span><span>:</span><span></span><span>"Approved"</span><span></span><span>}</span><span>
+</span><span>]</span><span>
+</span></span></code></div></div></pre>
+
+`Select` configurado:
+
+* **From** : `body('Get_items')?['value']`
+* **Map** :
+* `Folio` → `item()?['Title']`
+* `Monto` → `item()?['Amount']`
+
+Salida:
+
+<pre class="overflow-visible!" data-start="1262" data-end="1366"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>[</span><span>
+  </span><span>{</span><span></span><span>"Folio"</span><span>:</span><span></span><span>"Factura 001"</span><span>,</span><span></span><span>"Monto"</span><span>:</span><span></span><span>2500</span><span></span><span>}</span><span>,</span><span>
+  </span><span>{</span><span></span><span>"Folio"</span><span>:</span><span></span><span>"Factura 002"</span><span>,</span><span></span><span>"Monto"</span><span>:</span><span></span><span>4800</span><span></span><span>}</span><span>
+</span><span>]</span><span>
+</span></span></code></div></div></pre>
+
+---
+
+### Ejemplo 2 – Preparar datos para un API
+
+Entrada (lista de usuarios en SQL):
+
+<pre class="overflow-visible!" data-start="1452" data-end="1593"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>[</span><span>
+  </span><span>{</span><span></span><span>"Name"</span><span>:</span><span></span><span>"Ana"</span><span>,</span><span></span><span>"Email"</span><span>:</span><span></span><span>"ana@test.com"</span><span>,</span><span></span><span>"Role"</span><span>:</span><span></span><span>"Admin"</span><span></span><span>}</span><span>,</span><span>
+  </span><span>{</span><span></span><span>"Name"</span><span>:</span><span></span><span>"Luis"</span><span>,</span><span></span><span>"Email"</span><span>:</span><span></span><span>"luis@test.com"</span><span>,</span><span></span><span>"Role"</span><span>:</span><span></span><span>"User"</span><span></span><span>}</span><span>
+</span><span>]</span><span>
+</span></span></code></div></div></pre>
+
+`Select` configurado:
+
+* **From** : resultado de SQL
+* **Map** :
+* `email_address` → `item()?['Email']`
+* `full_name` → `concat(item()?['Name'], ' - ', item()?['Role'])`
+
+Salida:
+
+<pre class="overflow-visible!" data-start="1775" data-end="1924"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-json"><span><span>[</span><span>
+  </span><span>{</span><span></span><span>"email_address"</span><span>:</span><span></span><span>"ana@test.com"</span><span>,</span><span></span><span>"full_name"</span><span>:</span><span></span><span>"Ana - Admin"</span><span></span><span>}</span><span>,</span><span>
+  </span><span>{</span><span></span><span>"email_address"</span><span>:</span><span></span><span>"luis@test.com"</span><span>,</span><span></span><span>"full_name"</span><span>:</span><span></span><span>"Luis - User"</span><span></span><span>}</span><span>
+</span><span>]</span><span>
+</span></span></code></div></div></pre>
+
+---
+
+# 🏷️ Nomenclatura (Best Practices)
+
+En Power Automate conviene nombrar cada acción con un **verbo + objeto** para que sea entendible sin abrirla.
+
+### Recomendaciones:
+
+* **select_MapInvoices** → si estás mapeando facturas.
+* **select_PrepareUserPayload** → si preparas datos de usuario para API.
+* **select_ExtractEmails** → si solo sacas correos.
+* **select_SimplifyOrderData** → si simplificas datos de órdenes.
+
+👉 Siempre con **prefijo `select_`** +  **lo que hace** .
+
+De esta forma, si otro abre tu flujo, en segundos entiende la lógica.
+
+
+## 📌 Criterios de naming para `Select`
+
+1. **Prefijo por tipo de acción**
+   * Usa `select_` como prefijo → ayuda a identificar rápido el tipo de acción.
+2. **Objeto/datos de entrada**
+   * Indica sobre qué dataset trabajas (ejemplo: facturas, usuarios, órdenes).
+3. **Acción/propósito de la transformación**
+   * Explica qué estás haciendo con esos datos: mapear, extraer, preparar, simplificar.
+
+
+## 🎯 Ejemplos según criterio
+
+* **select_MapInvoices** → si conviertes facturas de SharePoint a un formato específico.
+* **select_ExtractEmails** → si extraes solo los correos de una lista de contactos.
+* **select_PrepareUserPayload** → si estás transformando datos de usuarios para enviarlos a un API.
+* **select_SimplifyOrderData** → si reduces un objeto complejo de órdenes a campos clave.
+* **select_BuildAttachmentsArray** → si mapeas archivos para SendGrid.
+
+---
+
+# 🚀 Resumen
+
+* `Select` = transforma arrays, como un `map` de programación.
+* Útil para reducir, renombrar o preparar datos para APIs.
+* Nómbralo siempre con `select_` + acción/objeto, por ejemplo: `select_MapInvoices`.
