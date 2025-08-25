@@ -233,6 +233,53 @@ Ejemplos:
 * `compose_FormatFecha` → dar formato a la fecha.
 * `compose_BuildBodyEmail` → construir cuerpo del correo.
 
+
+### 🔑 Convención recomendada para **Compose**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="271" data-end="307"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span><span class="language-xml">compose_<QuéHace</span></span><span>>_</span><span><TipoDato</span><span>>
+</span></span></code></div></div></pre>
+
+### Reglas:
+
+1. **Prefijo `compose_`** → siempre, para identificar que es un  *Data Operation Compose* .
+2. **Nombre descriptivo** → explica el propósito o transformación.
+3. **Sufijo opcional de tipo de dato** (`_str`, `_int`, `_bool`, `_arr`, `_obj`, `_dt`) → recomendable si no es evidente.
+
+---
+
+### 📌 Ejemplos prácticos
+
+### Strings
+
+* `compose_formatDate_str` → fecha ya formateada como string.
+* `compose_customerEmail_str` → email extraído del objeto.
+
+### Enteros / Decimales
+
+* `compose_totalFacturas_int` → número total de facturas.
+* `compose_importe_float` → valor numérico con decimales.
+
+### Booleanos
+
+* `compose_isValid_bool` → resultado de una validación.
+* `compose_hasItems_bool` → si un array tiene elementos.
+
+### Arrays
+
+* `compose_customers_arr` → lista de clientes.
+* `compose_filesToZip_arr` → lista de archivos para comprimir.
+
+### Objetos JSON
+
+* `compose_customer_obj` → objeto del cliente actual.
+* `compose_responseAPI_obj` → respuesta completa de un API.
+
+### Fechas
+
+* `compose_executionTime_dt` → fecha/hora en ISO 8601.
+
 ---
 
 ## 🔹 6. **Variables**
