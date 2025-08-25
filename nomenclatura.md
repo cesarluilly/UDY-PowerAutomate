@@ -27,7 +27,9 @@
 # Acciones (título visible)
 
 * **Verbo + Objeto + Contexto**
-  * HTTP: `HTTP_SendGrid_SendMail`, `HTTP_API_GetInvoices`
+  * Consumo API HTTP: `HTTP_SendGrid_SendMail`, `HTTP_API_GetInvoices`
+    * `http_getTokenCuprum`
+    * `http_getTokenSendGrid`
   * SQL: `SQL_ERP_GetInvoices_ByDate`
   * SharePoint: `SP_TaxDocs_CreateFile`
   * Dataverse: `DV_Invoice_UpdateStatus`
@@ -159,7 +161,278 @@
 
 
 
+# 📑 Catálogo de convenciones de nombres para Actions
 
+---
+
+## 🔹 1. **Acciones SQL**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="297" data-end="339"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>sql_</span><span><</span><span>Área</span><span>/Módulo>_<Acción/</span><span>Entidad</span><span>></span><span>
+</span></span></code></div></div></pre>
+
+Ejemplos:
+
+* `sql_HubFac_GetRFCs` → ejecuta SP para obtener RFCs.
+* `sql_Finanzas_GetFacturasPendientes` → consulta facturas.
+* `sql_Ventas_InsertPedido` → inserta un pedido en tabla de ventas.
+
+---
+
+## 🔹 2. **Condiciones (If / Condition)**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="601" data-end="632"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span><span class="language-xml">if_<Fuente</span></span><span>>_</span><span><QuéValida</span><span>>
+</span></span></code></div></div></pre>
+
+Ejemplos:
+
+* `if_HubFac_RFCs_HasItems` → valida si hay RFCs en la respuesta.
+* `if_Facturas_IsOverdue` → valida si la factura está vencida.
+* `if_Response_IsSuccess` → valida si la API respondió 200 OK.
+
+---
+
+## 🔹 3. **Iteraciones (Apply to each)**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="902" data-end="927"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>foreach</span><span>_</span><span><Entidad>
+</span></span></code></div></div></pre>
+
+Ejemplos:
+
+* `foreach_HubFac_RFCs` → iterar cada RFC devuelto por SQL.
+* `foreach_FacturasPendientes` → iterar cada factura pendiente.
+* `foreach_CorreosClientes` → iterar lista de correos de clientes.
+
+---
+
+## 🔹 4. **Bloques Scope**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="1182" data-end="1211"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span><span class="language-xml">scope_<Funcionalidad</span></span><span>>
+</span></span></code></div></div></pre>
+
+Ejemplos:
+
+* `scope_SendEmail` → agrupa todos los pasos para enviar correo.
+* `scope_HandleErrors` → agrupa lógica de manejo de errores.
+* `scope_LogExecution` → agrupa logging de ejecución.
+
+---
+
+## 🔹 5. **Acciones Compose**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="1458" data-end="1496"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>compose_<Transformación/Valor>
+</span></span></code></div></div></pre>
+
+Ejemplos:
+
+* `compose_ExtractToken` → guardar token de la respuesta.
+* `compose_FormatFecha` → dar formato a la fecha.
+* `compose_BuildBodyEmail` → construir cuerpo del correo.
+
+---
+
+## 🔹 6. **Variables**
+
+Formato:
+
+<pre class="overflow-visible!" data-start="1722" data-end="1821"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span><span class="language-xml">var_<nombre</span></span><span>>  (cuando es normal)  
+var_env_</span><span><nombre</span><span>>  (cuando viene de variable de ambiente)
+</span></span></code></div></div></pre>
+
+Ejemplos:
+
+* `var_accessToken` → token de autenticación.
+* `var_env_apiUrl` → URL de la API (desde env).
+* `var_facturasPendientes` → array de facturas.
+
+---
+
+# 📊 Resumen en tabla
+
+| Tipo de Action     | Convención                            | Ejemplo                        |
+| ------------------ | -------------------------------------- | ------------------------------ |
+| **SQL**      | `sql_<Área>_<Acción>`              | `sql_HubFac_GetRFCs`         |
+| **If**       | `if_<Fuente>_<Valida>`               | `if_HubFac_RFCs_HasItems`    |
+| **ForEach**  | `foreach_<Entidad>`                  | `foreach_FacturasPendientes` |
+| **Scope**    | `scope_<Funcionalidad>`              | `scope_HandleErrors`         |
+| **Compose**  | `compose_<Acción>`                  | `compose_ExtractToken`       |
+| **Variable** | `var_<nombre>`o `var_env_<nombre>` | `var_env_apiUrl`             |
+
+---
+
+✅ Con este catálogo, cada action se entiende de inmediato:
+
+* Qué hace.
+* A qué entidad/proceso se refiere.
+* Si es SQL, condición, iteración, etc.
+
+# 🔑 Convención recomendada para Filter array
+
+Formato:
+
+<pre class="overflow-visible!" data-start="304" data-end="338"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span><span class="language-xml">filter_<Fuente</span></span><span>>_</span><span><Criterio</span><span>>
+</span></span></code></div></div></pre>
+
+* **filter_** → prefijo que indica que es un filtrado.
+* **Fuente** → el array que estás filtrando (ej. RFCs, Facturas, Clientes).
+* **Criterio** → lo que valida el filtro (ej. Activas, Vencidas, Validas).
+
+---
+
+## 📌 Ejemplos prácticos
+
+* `filter_HubFac_RFCs_Valid`
+
+  → Filtra solo los RFCs válidos del resultado del SP.
+* `filter_FacturasPendientes_Vencidas`
+
+  → Filtra facturas que ya pasaron su fecha de vencimiento.
+* `filter_CorreosClientes_NoNulos`
+
+  → Filtra lista de correos para quitar los vacíos/nulos.
+* `filter_Response_OnlySuccess`
+
+  → Filtra respuesta de API dejando solo los elementos con `status = 200`.
+
+---
+
+## 🎯 Buenas prácticas
+
+* Usa  **nombres cortos pero descriptivos** .
+
+  Ejemplo: mejor `filter_Facturas_Vencidas` que `filter_FacturasPendientesConFechaMayorAlDiaActual`.
+* Si vas a tener varios filtros encadenados, numéralos:
+
+  * `filter_Facturas_Step1_Pendientes`
+  * `filter_Facturas_Step2_Vencidas`
+
+---
+
+✅ Entonces, en tu caso (si vienes de un `sql_HubFac_GetRFCs`):
+
+Yo lo nombraría:
+
+👉 **`filter_HubFac_RFCs_Valid`** (si filtras válidos)
+
+👉 **`filter_HubFac_RFCs_ForEmail`** (si filtras los que se enviarán por correo).
+
+### Ejemplo en caso real
+
+🔎 Tu nombre actual
+
+`filter_http_GetCustomers_FindByRFC`
+
+### ✔️ Lo bueno
+
+* **Prefijo `filter_`** → correcto, identifica que es un  *Filter array* .
+* **Incluiste la fuente (`http_GetCustomers`)** → excelente, queda claro que el filtro viene de la salida de esa llamada HTTP.
+* **El criterio `FindByRFC`** → muy explícito, describes lo que valida.
+
+### ❌ Lo mejorable
+
+* Es un poco **largo** (ya incluye `http_` + `GetCustomers` + `FindByRFC`).
+* Si en tu flujo tienes varios filtros encadenados, puede volverse pesado leerlo.
+
+---
+
+## ✅ Opciones recomendadas
+
+### Opción 1: Mantener el origen completo (lo tuyo)
+
+👉 `filter_http_GetCustomers_FindByRFC`
+
+✔️ Muy explícito, útil si hay muchas fuentes.
+
+❌ Puede ser redundante porque ya se sabe que la salida viene de `http_GetCustomers`.
+
+### Opción 2: Resumir el origen
+
+👉 `filter_Customers_ByRFC`
+
+✔️ Más corto y fácil de leer.
+
+✔️ Igual de claro, porque ya sabes que el action `http_GetCustomers` existe.
+
+❌ Menos útil si tienes múltiples orígenes con nombre parecido.
+
+### Opción 3: Enfatizar el criterio
+
+👉 `filter_RFCs_FromCustomers`
+
+✔️ A simple vista sabes qué extrae.
+
+✔️ Útil si usas el array en varios lugares.
+
+❌ El origen queda implícito.
+
+---
+
+## 📌 Recomendación práctica
+
+* Si  **en tu solución hay solo un `GetCustomers`** , yo lo dejaría en la versión corta:
+
+  👉 `filter_Customers_ByRFC`
+* Si hay  **muchos orígenes HTTP (GetCustomers, GetSuppliers, GetInvoices)** , tu versión larga es mejor para evitar confusiones:
+
+  👉 `filter_http_GetCustomers_FindByRFC`
+
+
+
+# 📑 Convenciones de nombres para Data Operations
+
+| **Tipo de Action**                | **Convención recomendada**    | **Ejemplo**                  | **Explicación**                     |
+| --------------------------------------- | ------------------------------------ | ---------------------------------- | ------------------------------------------ |
+| **Filter array**                  | `filter_<Fuente>_<Criterio>`       | `filter_HubFac_RFCs_Valid`       | Filtra RFCs válidos del SP.               |
+| **Select**                        | `select_<Fuente>_<Propósito>`     | `select_Facturas_ToEmail`        | Proyecta campos de facturas para correo.   |
+| **Join**                          | `join_<Fuente>_<Formato>`          | `join_CorreosClientes_CSV`       | Une correos de clientes en formato CSV.    |
+| **Parse JSON**                    | `parse_<Fuente>_<Entidad>`         | `parse_Response_APIClientes`     | Parsear JSON devuelto por API de clientes. |
+| **Create CSV table**              | `csv_<Fuente>_<Propósito>`        | `csv_FacturasPendientes_Reporte` | Crear tabla CSV de facturas pendientes.    |
+| **Create HTML table**             | `html_<Fuente>_<Propósito>`       | `html_FacturasPendientes_Email`  | Crear tabla HTML para enviarla en correo.  |
+| **Compose**                       | `compose_<Acción/Valor>`          | `compose_ExtractToken`           | Guardar/transformar un valor específico.  |
+| **Union / Intersection / Except** | `<operación>_<Fuente1>_<Fuente2>` | `union_Facturas_QA_Prod`         | Operaciones entre dos arrays.              |
+
+---
+
+## 🔹 Ejemplo aplicado a tu caso de facturación
+
+1. **Consulta SQL** :
+
+   `sql_hubFac_GetRFCs`
+
+1. **Filter array** (validar RFCs no vacíos):
+
+   `filter_HubFac_RFCs_NotEmpty`
+2. **Select** (quedarse solo con campo `ReceiverRFC`):
+
+   `select_HubFac_RFCs_ReceiverOnly`
+3. **Join** (convertir en string separado por comas):
+
+   `join_HubFac_RFCs_CommaSeparated`
+4. **Compose** (preparar header para siguiente request):
+
+   `compose_BuildAuthHeader`
+5. **Parse JSON** (respuesta de API de envío de correos):
+
+   `parse_SendGrid_Response`
+
+---
+
+## 🎯 Buenas prácticas
+
+* Siempre usar **prefijo según tipo de acción** (`filter_`, `select_`, `parse_`, etc.).
+* En el **medio** incluir la **fuente** (`HubFac_RFCs`, `FacturasPendientes`, `Response`).
+* Al final, opcionalmente el **criterio o propósito** (`Valid`, `ToEmail`, `CommaSeparated`).
+
+Así, aunque tengas 20 filtros y 5 selects, a simple vista sabes qué hace cada uno.
 
 ¡Hecho! Aquí tienes un **estándar compacto** para nombrar todo en Power Automate (cloud). Úsalo tal cual como “guía de estilo” para tu equipo.
 
@@ -430,6 +703,7 @@ Formato recomendado:
 * `int_numeroFactura`
 * `arr_facturasPendientes`
 * `bool_esValido`
+* obj_customer
 
 ---
 
@@ -556,3 +830,89 @@ Si quieres, te genero una **plantilla de Solution** con:
 * Flow esqueleto con todas estas convenciones
 
   para que la importes y la usen de base.
+
+# Variables de ambiente
+
+Cuando hablamos de  **variables de ambiente en Power Automate (dentro de Solutions con Dataverse)** , las **naming conventions** son clave para que todo el equipo entienda rápidamente qué representan, evitar ambigüedades y facilitar la migración entre entornos (Dev, QA, Prod).
+
+Aquí tienes las  **best practices más recomendadas por la comunidad y Microsoft** :
+
+---
+
+## 🔹 1. Prefijo claro
+
+* Usa siempre un prefijo que indique que es una variable de ambiente:
+
+  **`env_`** → estándar más utilizado.
+
+Ejemplo:
+
+* `env_api_url`
+* `env_sql_conn`
+
+---
+
+## 🔹 2. Estructura jerárquica
+
+Se recomienda la forma:
+
+<pre class="overflow-visible!" data-start="638" data-end="684"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre!"><span><span>env_</span><span>[área/proceso]</span><span>_</span><span>[nombre]</span><span>_</span><span>[tipoDato]</span><span>
+</span></span></code></div></div></pre>
+
+* **env_** → indica que es una variable de ambiente.
+* **área/proceso** → contexto funcional (ej. finanzas, facturas, notificaciones).
+* **nombre** → propósito claro de la variable.
+* **tipoDato** → sufijo que indique tipo o naturaleza.
+
+Ejemplos:
+
+* `env_finanzas_sql_conn` → conexión SQL del área de Finanzas.
+* `env_facturas_api_url` → endpoint de API de facturas.
+* `env_notificaciones_from_email` → correo de remitente para notificaciones.
+* `env_sendgrid_api_key` → API Key de SendGrid.
+
+---
+
+## 🔹 3. Tipos de sufijos más usados
+
+| Sufijo     | Significado                                  | Ejemplo                     |
+| ---------- | -------------------------------------------- | --------------------------- |
+| `_url`   | Endpoint de servicio / API                   | `env_facturas_api_url`    |
+| `_conn`  | Conexión (SQL, SharePoint, Dataverse, etc.) | `env_sqlserver_conn`      |
+| `_key`   | API Key o secreto                            | `env_sendgrid_api_key`    |
+| `_email` | Dirección de correo                         | `env_support_email`       |
+| `_bool`  | Valores lógicos                             | `env_habilitar_logs_bool` |
+| `_int`   | Valores numéricos                           | `env_max_retries_int`     |
+| `_str`   | Texto plano                                  | `env_mensaje_error_str`   |
+
+---
+
+## 🔹 4. Consistencia entre ambientes
+
+* **Dev** → `env_facturas_api_url = https://dev.api.cuprum.com/facturas`
+* **QA** → `env_facturas_api_url = https://qa.api.cuprum.com/facturas`
+* **Prod** → `env_facturas_api_url = https://api.cuprum.com/facturas`
+
+👉 El mismo nombre en los tres ambientes, solo cambia el valor.
+
+Esto hace que al mover la solución, no tengas que cambiar nada en los flujos.
+
+---
+
+## 🔹 5. Simplicidad y no redundancia
+
+* Evita cosas como: `env_variable_facturas_url_api_link` (demasiado largo y redundante).
+* Mejor: `env_facturas_api_url`.
+
+
+## 📌 Ejemplos comunes de variables de ambiente
+
+| Variable                           | Ejemplo                           | Uso                                                                                  |
+| ---------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------ |
+| **Conexión SQL**            | `env_finanzas_sql_conn`         | Conexión a base de datos de Finanzas en QA o Prod.                                  |
+| **URL de API**               | `env_facturas_api_url`          | Diferentes endpoints por ambiente (`https://qa.api...`vs `https://prod.api...`). |
+| **Clave de API**             | `env_sendgrid_api_key`          | Se usa para autenticar contra SendGrid u otro servicio.                              |
+| **Correo remitente**         | `env_notificaciones_from_email` | Dirección desde la que se enviarán notificaciones.                                 |
+| **Nombre de recurso**        | `env_sharepoint_site_name`      | Nombre del sitio de SharePoint asociado al flujo.                                    |
+| **Booleano de control**      | `env_habilitar_debug_bool`      | Habilitar o deshabilitar logs/tracing.                                               |
+| **Entero de configuración** | `env_max_retries_int`           | Número máximo de reintentos antes de fallar.                                       |
